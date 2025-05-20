@@ -6,6 +6,7 @@ import models
 import schemas
 import crud
 from sqlalchemy.orm import Session
+from fastapi.responses import JSONResponse
 
 
 models.Base.metadata.create_all(bind=engine)
@@ -59,11 +60,20 @@ def get_db():
 
 @app.post("/students")
 def create_student(student: schemas.UserCreate, db: Session = Depends(get_db)):
-    crud.create_user(db, student)
-    raise HTTPException(status_code=201,detail="Student created 👍.")
+    try:
+        crud.create_user(db, student)
+        return JSONResponse(status_code=201, content={"message": "Student created 👍."})
+    except Exception as e: # exception will cath the error if the incoming data from payload is ok and here is some issue in saving the data in db.
+        print(f"Error creating student: {e}")
+        print(type(str(e)))
+
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
 
 
-@app.get("/students", response_model=list[schemas.UserOut])
-def read_students(db: Session = Depends(get_db)):
-    return crud.get_all_students(db)
+# @app.get("/students", response_model=list[schemas.UserOut])
+# def read_students(db: Session = Depends(get_db)):
+#     return crud.get_all_students(db)
 
