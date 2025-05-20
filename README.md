@@ -3,9 +3,15 @@
 This is a simple FastAPI-based RESTful API for managing student data. 
 It uses SQLAlchemy for ORM, PostgreSQL for the database, and Pydantic for data validation.
 
+# Some understanding of FastAPI  - 
+models.py SQLAlchemy model, similar to Django ORM model.
+schemas.py (Pydantic models = Django serializers)
+main.py is like(views.py + urls.py in Django)
 
 ## Requirements
 
+
+schemas.py (Pydantic models = Django serializers)
 - Python 3.9+
 - PostgreSQL installed and running
 - `pip` (Python package manager)
