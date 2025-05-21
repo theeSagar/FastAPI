@@ -5,7 +5,7 @@ It uses SQLAlchemy for ORM, PostgreSQL for the database, and Pydantic for data v
 
 # Some understanding of FastAPI  - 
 - models.py SQLAlchemy model, similar to Django ORM model.
-- schemas.py (Pydantic models = Django serializers)
+- schemas.py (Pydantic models = Django serializers)(type validationa and data validation.)
 - main.py is like(views.py + urls.py in Django)
 
 ## Requirements
