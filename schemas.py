@@ -9,11 +9,3 @@ class UserCreate(BaseModel):
     version: Optional[int] = None
   # Use Optional if the field can be None (nullable)
 
-class UserOut(UserCreate):
-    id: int  # DB-generated ID
-
-    class Config:
-        orm_mode = True
-    
-    class Config:
-        orm_mode = True  # Tells Pydantic to treat the SQLAlchemy model as a dict
