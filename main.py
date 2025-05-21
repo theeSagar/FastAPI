@@ -73,7 +73,14 @@ def create_student(student: schemas.UserCreate, db: Session = Depends(get_db)):
         )
 
 
-# @app.get("/students", response_model=list[schemas.UserOut])
-# def read_students(db: Session = Depends(get_db)):
-#     return crud.get_all_students(db)
+@app.get("/students", response_model=list[schemas.UserCreate])
+def read_students(db: Session = Depends(get_db)):
+    try:
+        return crud.get_all_students(db)
+    
+    except Exception as e:
 
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
