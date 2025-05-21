@@ -63,7 +63,7 @@ def create_student(student: schemas.UserCreate, db: Session = Depends(get_db)):
     try:
         crud.create_user(db, student)
         return JSONResponse(status_code=201, content={"message": "Student created 👍."})
-    except Exception as e: # exception will cath the error if the incoming data from payload is ok and here is some issue in saving the data in db.
+    except Exception as e: # exception will cath the error if the incoming data from payload is ok and here is some issue in saving the data in db
         print(f"Error creating student: {e}")
         print(type(str(e)))
 
